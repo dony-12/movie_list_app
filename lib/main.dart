@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/components/movie_card.dart';
 import 'package:movie_app/providers/movie_provider.dart';
-import 'package:movie_app/utils/movie_parser.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -17,8 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 18, 18, 19)),
         useMaterial3: true,
       ),
       home: const Home());
@@ -51,16 +50,11 @@ class _HomeState extends State<Home> {
             itemCount: movies.movieList.length,
             itemBuilder: (context, index) {
             final movie = movies.movieList[index];
-            return ListTile(
-              title: Text(movie.title),
-              subtitle: Text("IMDB Rating: ${movie.imdbRating} | Genre(s): ${movie.genre} | Director: ${movie.director}"),
-              leading: CircleAvatar(
-                child: Text(movie.title[0]),
-              ),
-              trailing: const Icon(Icons.menu),
-            );
+            return MovieCard(movie: movie);
           }),
         ),
       );
     }
   }
+
+
